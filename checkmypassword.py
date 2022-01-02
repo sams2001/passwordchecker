@@ -1,5 +1,6 @@
 import requests
 import hashlib 
+import os
 import sys
 
 def request_api_data(query_char):
@@ -32,10 +33,12 @@ def main(password):
         print("It was not found, you're ok!")
     print("")
 
+directory = str(os.path.dirname(os.path.realpath(__file__)))
+
 
 filename = input("Enter the name of the .txt file with the passwords you would like to check ")
 try:
-    with open(filename, mode = 'r') as f:
+    with open(f"{directory}/{filename}", mode = 'r') as f: 
         for i, password_in_txt in enumerate(f):
             password_in_txt = password_in_txt.strip()
             print(f"Checking password {i+1}")
